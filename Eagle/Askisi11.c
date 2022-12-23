@@ -1,15 +1,22 @@
 #include <stdio.h>
 #include <math.h>
 
+/*
+ * This program takes a number as input, and checks if the number is an atomic prime. If the number:
+ *
+ * 1) is Prime
+ * 2) can be produced by adding a natural number with each of it's individual digits
+ *
+ * it's considered to be an atomic prime.
+ */
+
 int isPrime(int n)
 {
-   // Check if the number is less than 2, which is not considered prime
    if (n == 2)
    {
       return 0;
    }
 
-   // Check if the number is divisible by any integers between 2 and the square root of the number
    for (int i = 2; i <= sqrt(n); i++)
    {
       if (n % i == 0)
@@ -18,7 +25,6 @@ int isPrime(int n)
       }
    }
 
-   // If the number is not divisible by any of these integers, it is prime
    return 1;
 }
 
@@ -38,15 +44,19 @@ int main()
    {
       int numberAndDigitSum;
 
+      // iterate over every number, and check if the sum of the number and each of it's digits is equal to the number provided by the user
       for (int i = 1; i <= num; i++)
       {
          int currentNumber = i;
+         // to store the sum of every number and each of it's digits
          numberAndDigitSum = currentNumber;
          do
          {
+            // add the last digit of the number
             numberAndDigitSum += (currentNumber % 10);
+            // cut the last digit
             currentNumber /= 10;
-
+            // not atomic, by definition
             if (numberAndDigitSum == num)
             {
                printf("No");
@@ -57,8 +67,11 @@ int main()
 
          while (currentNumber >= 1);
       }
+      // is atomic, since we've exhausted every possible number
       printf("Yes");
       return 0;
    }
+
+   // not prime
    printf("No");
 }
