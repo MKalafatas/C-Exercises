@@ -1,6 +1,27 @@
 #include <stdio.h>
 #include <math.h>
 
+int populateArray(int *p, int N)
+{
+
+    int sum = 0;
+
+    for (int i = 0; i < N; i++)
+    {
+        scanf("%d", &p[i]);
+
+        if (p[i] < 0 || p[i] > 1000000000)
+        {
+            printf("Wrong Input");
+            return -1;
+        }
+
+        sum += p[i];
+    }
+
+    return sum;
+}
+
 int main()
 {
     int N, sum = 0;
@@ -15,29 +36,9 @@ int main()
 
     int A[N], B[N];
 
-    for (int i = 0; i < N; i++)
-    {
-        scanf("%d", &A[i]);
+    sum = populateArray(A, N);
 
-        if (A[i] < 0 || A[i] > 1000000000)
-        {
-            printf("Wrong Input");
-            return -1;
-        }
-
-        sum += A[i];
-    }
-
-    for (int i = 0; i < N; i++)
-    {
-        scanf("%d", &B[i]);
-
-        if (B[i] < 0 || B[i] > 1000000000 || A[i] > B[i])
-        {
-            printf("Wrong Input");
-            return -1;
-        }
-    }
+    populateArray(B, N);
 
     for (int i = 0; i < N - 1; i++)
     {
